@@ -5,7 +5,7 @@ pandas,
 matplotlib, 
 firebase_admin
 
-httml/javascript:
+Visual Studio Code:(httml/javascript)
 firebase, 
 chart.js, 
 live server, 
