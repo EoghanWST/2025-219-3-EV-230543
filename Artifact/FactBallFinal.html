@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <title>FactBall</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js">
+  </script>
+
+</head>
+
+<body style="background-color:#99d5f8;">
+
+  <form action="http://127.0.0.1:5500/FactBall%20Breif.html">
+    <input type="submit" value="Go to Brief page" />
+  </form>
+  <form action="http://127.0.0.1:5500/UserSurveyWED.html">
+    <input type="submit" value="Go to Survey page" />
+  </form>
+
+
+
+  <style>
+    h1 {
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    img {
+      text-align: center;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 10%;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+  <img src="Fifa(1).png" alt="Fifa" class="center">
+  <h1 style="background-color:#2e80d1;">Factball</h1>
+  <p>An analysis on FIFA Clubs and Nations</p>
+  <p>This website is an analysis on clubs and nation in the geam Fifa 23. Compare you favorite clubs and nations and gain a new insight into Fifa football</p>
+
+  <div>
+    <canvas id='myChart'>0</canvas>
+  </div>
+  <p>This graph shows a comparison between the overall average rating of palayers in each club, a high score indicates better squad depth and a quality level of players, choose a team to add bellow and see how they compare</p>
+  <div>
+    <canvas id='myChart2'>0</canvas>
+  </div>
+
+
+
+ 
+
+  <body>
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Add a team graph 1 </button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Choose a team to add</p>
+        <label for="drop1">Choose a team to add:</label>
+        <select name="drop1" id="drop1">  
+
+        </select>
+      </div>
+      <button id="Update">Update</button>
+
+    </div>
+
+    <button id="Reset">Reset</button>
+
+
+    </div>
+
+    <!-- second modal -->
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn2">Add a Nation graph 2</button>
+
+    <!-- The Modal -->
+    <div id="myModal2" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content2">
+        <span class="close2">&times;</span>
+        <p>Choose a nation to add</p>
+        <label for="dropp">Choose a team to add:</label>
+        <select name="dropp" id="dropp">
+
+        </select>
+      </div>
+      <button id="Update2">Update</button>
+
+    </div>
+
+    <button id="Reset2">Reset</button>
+    <p>This graph repersents the number of right footed and left footed plaayers in each nation in fifa. Select any two options for graph 2 and see the comparison</p>
+
+    <h2>RECOMMENDATIONS</h2>
+    
+
+
+    <!-- drop options for RECOMEDNATIONS -->
+    <label for="drop2">Choose a nation to find the average rating:</label>
+    <select name="drop2" id="drop2"> 
+      <option>Afghanistan</option>
+      <option>Albania</option>
+      <option>Algeria</option>
+      <option>Andorra</option>
+      <option>Angola</option>
+      <option>Antigua and Barbuda</option>
+      <option>Argentina</option>
+      <option>Armenia</option>
+      <option>Australia</option>
+      <option>Austria</option>
+      <option>Azerbaijan</option>
+      <option>Barbados</option>
+      <option>Belarus</option>
+      <option>Belgium</option>
+      <option>Benin</option>
+      <option>Bermuda</option>
+      <option>Bolivia</option>
+      <option>Bosnia and Herzegovina</option>
+      <option>Brazil</option>
+      <option>Bulgaria</option>
+      <option>Burkina Faso</option>
+      <option>Burundi</option>
+      <option>Cameroon</option>
+      <option>Canada</option>
+      <option>Cape Verde Islands</option>
+      <option>Central African Republic</option>
+      <option>Chad</option>
+      <option>Chile</option>
+      <option>China PR</option>
+      <option>Chinese Taipei</option>
+      <option>Colombia</option>
+      <option>Comoros</option>
+      <option>Congo</option>
+      <option>Congo DR</option>
+      <option>Costa Rica</option>
+      <option>Croatia</option>
+      <option>Cuba</option>
+      <option>Curacao</option>
+      <option>Cyprus</option>
+      <option>Czech Republic</option>
+      <option>Côte d'Ivoire</option>
+      <option>Denmark</option>
+      <option>Dominican Republic</option>
+      <option>Ecuador</option>
+      <option>Egypt</option>
+      <option>El Salvador</option>
+      <option>England</option>
+      <option>Equatorial Guinea</option>
+      <option>Estonia</option>
+      <option>Ethiopia</option>
+      <option>Faroe Islands</option>
+      <option>Fiji</option>
+      <option>Finland</option>
+      <option>France</option>
+      <option>Gabon</option>
+      <option>Gambia</option>
+      <option>Georgia</option>
+      <option>Germany</option>
+      <option>Ghana</option>
+      <option>Gibraltar</option>
+      <option>Greece</option>
+      <option>Grenada</option>
+      <option>Guam</option>
+      <option>Guatemala</option>
+      <option>Guinea</option>
+      <option>Guinea Bissau</option>
+      <option>Guyana</option>
+      <option>Haiti</option>
+      <option>Honduras</option>
+      <option>Hong Kong</option>
+      <option>Hungary</option>
+      <option>Iceland</option>
+      <option>India</option>
+      <option>Indonesia</option>
+      <option>Iran</option>
+      <option>Iraq</option>
+      <option>Israel</option>
+      <option>Italy</option>
+      <option>Jamaica</option>
+      <option>Japan</option>
+      <option>Jordan</option>
+      <option>Kazakhstan</option>
+      <option>Kenya</option>
+      <option>Korea DPR</option>
+      <option>Korea Republic</option>
+      <option>Kosovo</option>
+      <option>Latvia</option>
+      <option>Lebanon</option>
+      <option>Liberia</option>
+      <option>Libya</option>
+      <option>Liechtenstein</option>
+      <option>Lithuania</option>
+      <option>Luxembourg</option>
+      <option>Madagascar</option>
+      <option>Mali</option>
+      <option>Malta</option>
+      <option>Mauritania</option>
+      <option>Mauritius</option>
+      <option>Mexico</option>
+      <option>Moldova</option>
+      <option>Montenegro</option>
+      <option>Montserrat</option>
+      <option>Morocco</option>
+      <option>Mozambique</option>
+      <option>Namibia</option>
+      <option>Netherlands</option>
+      <option>New Zealand</option>
+      <option>Nigeria</option>
+      <option>North Macedonia</option>
+      <option>Northern Ireland</option>
+      <option>Norway</option>
+      <option>Palestine</option>
+      <option>Panama</option>
+      <option>Papua New Guinea</option>
+      <option>Paraguay</option>
+      <option>Peru</option>
+      <option>Philippines</option>
+      <option>Poland</option>
+      <option>Portugal</option>
+      <option>Puerto Rico</option>
+      <option>Qatar</option>
+      <option>Republic of Ireland</option>
+      <option>Romania</option>
+      <option>Russia</option>
+      <option>Saint Kitts and Nevis</option>
+      <option>Saint Lucia</option>
+      <option>Saudi Arabia</option>
+      <option>Scotland</option>
+      <option>Senegal</option>
+      <option>Serbia</option>
+      <option>Sierra Leone</option>
+      <option>Singapore</option>
+      <option>Slovakia</option>
+      <option>Slovenia</option>
+      <option>South Africa</option>
+      <option>South Sudan</option>
+      <option>Spain</option>
+      <option>Sudan</option>
+      <option>Suriname</option>
+      <option>Sweden</option>
+      <option>Switzerland</option>
+      <option>Syria</option>
+      <option>São Tomé e Príncipe</option>
+      <option>Tanzania</option>
+      <option>Thailand</option>
+      <option>Togo</option>
+      <option>Trinidad and Tobago</option>
+      <option>Tunisia</option>
+      <option>Turkey</option>
+      <option>Uganda</option>
+      <option>Ukraine</option>
+      <option>United Arab Emirates</option>
+      <option>United States</option>
+      <option>Uruguay</option>
+      <option>Uzbekistan</option>
+      <option>Venezuela</option>
+      <option>Vietnam</option>
+      <option>Wales</option>
+      <option>Zambia</option>
+      <option>Zimbabwe<option>
+    </select>
+
+  
+    <p id = "avpaleyrr" >[]</p>
+
+        <!-- drop options for RECOMEDNATIONS 2 -->
+
+    <label for="drop3">Choose a nation to find the average weekly wage:</label>
+    <select name="drop3" id="drop3"> 
+      <option>Afghanistan</option>
+      <option>Albania</option>
+      <option>Algeria</option>
+      <option>Andorra</option>
+      <option>Angola</option>
+      <option>Antigua and Barbuda</option>
+      <option>Argentina</option>
+      <option>Armenia</option>
+      <option>Australia</option>
+      <option>Austria</option>
+      <option>Azerbaijan</option>
+      <option>Barbados</option>
+      <option>Belarus</option>
+      <option>Belgium</option>
+      <option>Benin</option>
+      <option>Bermuda</option>
+      <option>Bolivia</option>
+      <option>Bosnia and Herzegovina</option>
+      <option>Brazil</option>
+      <option>Bulgaria</option>
+      <option>Burkina Faso</option>
+      <option>Burundi</option>
+      <option>Cameroon</option>
+      <option>Canada</option>
+      <option>Cape Verde Islands</option>
+      <option>Central African Republic</option>
+      <option>Chad</option>
+      <option>Chile</option>
+      <option>China PR</option>
+      <option>Chinese Taipei</option>
+      <option>Colombia</option>
+      <option>Comoros</option>
+      <option>Congo</option>
+      <option>Congo DR</option>
+      <option>Costa Rica</option>
+      <option>Croatia</option>
+      <option>Cuba</option>
+      <option>Curacao</option>
+      <option>Cyprus</option>
+      <option>Czech Republic</option>
+      <option>Côte d'Ivoire</option>
+      <option>Denmark</option>
+      <option>Dominican Republic</option>
+      <option>Ecuador</option>
+      <option>Egypt</option>
+      <option>El Salvador</option>
+      <option>England</option>
+      <option>Equatorial Guinea</option>
+      <option>Estonia</option>
+      <option>Ethiopia</option>
+      <option>Faroe Islands</option>
+      <option>Fiji</option>
+      <option>Finland</option>
+      <option>France</option>
+      <option>Gabon</option>
+      <option>Gambia</option>
+      <option>Georgia</option>
+      <option>Germany</option>
+      <option>Ghana</option>
+      <option>Gibraltar</option>
+      <option>Greece</option>
+      <option>Grenada</option>
+      <option>Guam</option>
+      <option>Guatemala</option>
+      <option>Guinea</option>
+      <option>Guinea Bissau</option>
+      <option>Guyana</option>
+      <option>Haiti</option>
+      <option>Honduras</option>
+      <option>Hong Kong</option>
+      <option>Hungary</option>
+      <option>Iceland</option>
+      <option>India</option>
+      <option>Indonesia</option>
+      <option>Iran</option>
+      <option>Iraq</option>
+      <option>Israel</option>
+      <option>Italy</option>
+      <option>Jamaica</option>
+      <option>Japan</option>
+      <option>Jordan</option>
+      <option>Kazakhstan</option>
+      <option>Kenya</option>
+      <option>Korea DPR</option>
+      <option>Korea Republic</option>
+      <option>Kosovo</option>
+      <option>Latvia</option>
+      <option>Lebanon</option>
+      <option>Liberia</option>
+      <option>Libya</option>
+      <option>Liechtenstein</option>
+      <option>Lithuania</option>
+      <option>Luxembourg</option>
+      <option>Madagascar</option>
+      <option>Mali</option>
+      <option>Malta</option>
+      <option>Mauritania</option>
+      <option>Mauritius</option>
+      <option>Mexico</option>
+      <option>Moldova</option>
+      <option>Montenegro</option>
+      <option>Montserrat</option>
+      <option>Morocco</option>
+      <option>Mozambique</option>
+      <option>Namibia</option>
+      <option>Netherlands</option>
+      <option>New Zealand</option>
+      <option>Nigeria</option>
+      <option>North Macedonia</option>
+      <option>Northern Ireland</option>
+      <option>Norway</option>
+      <option>Palestine</option>
+      <option>Panama</option>
+      <option>Papua New Guinea</option>
+      <option>Paraguay</option>
+      <option>Peru</option>
+      <option>Philippines</option>
+      <option>Poland</option>
+      <option>Portugal</option>
+      <option>Puerto Rico</option>
+      <option>Qatar</option>
+      <option>Republic of Ireland</option>
+      <option>Romania</option>
+      <option>Russia</option>
+      <option>Saint Kitts and Nevis</option>
+      <option>Saint Lucia</option>
+      <option>Saudi Arabia</option>
+      <option>Scotland</option>
+      <option>Senegal</option>
+      <option>Serbia</option>
+      <option>Sierra Leone</option>
+      <option>Singapore</option>
+      <option>Slovakia</option>
+      <option>Slovenia</option>
+      <option>South Africa</option>
+      <option>South Sudan</option>
+      <option>Spain</option>
+      <option>Sudan</option>
+      <option>Suriname</option>
+      <option>Sweden</option>
+      <option>Switzerland</option>
+      <option>Syria</option>
+      <option>São Tomé e Príncipe</option>
+      <option>Tanzania</option>
+      <option>Thailand</option>
+      <option>Togo</option>
+      <option>Trinidad and Tobago</option>
+      <option>Tunisia</option>
+      <option>Turkey</option>
+      <option>Uganda</option>
+      <option>Ukraine</option>
+      <option>United Arab Emirates</option>
+      <option>United States</option>
+      <option>Uruguay</option>
+      <option>Uzbekistan</option>
+      <option>Venezuela</option>
+      <option>Vietnam</option>
+      <option>Wales</option>
+      <option>Zambia</option>
+      <option>Zimbabwe<option>
+    </select>
+
+  
+    <p id = "avpaleyrw" >[]</p>
+
+
+
+    <script type="module">
+      let bob = document.getElementById("Update")
+      bob.addEventListener("click", ABC)
+      function ABC(event) {
+
+        event.preventDefault()
+        let teamselection = document.getElementById("drop1").value
+        // let teamselection = document.getElementById("drop1").value
+
+        console.log(optionsX)
+        console.log(optionsy)
+
+        let score = optionsy[optionsX.indexOf(teamselection)]
+
+        Def.data.labels.push(teamselection)//go through this array
+        Def.data.datasets[0].data.push(score)
+        Def.update()
+        modal.style.display = "none";
+      }
+
+      let res = document.getElementById("Reset")
+
+      res.addEventListener("click", CBA)
+
+      function CBA(event) {
+        event.preventDefault()
+        console.log(initialgraphlabels)
+        Def.data.labels = initialgraphlabels
+
+        let xtemp =  structuredClone(initialgraphlabels)
+        let ytemp =  structuredClone(initialgraphvalues)
+
+        Def.data.labels = xtemp
+        Def.data.datasets[0].data = ytemp
+        Def.update()
+      }
+
+
+
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal 
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      //Create array of options to be added
+
+      function dropdown(array) {
+        let selectlist = document.getElementById("drop1")
+        //Create and append the options
+        for (var i = 0; i < array.length; i++) {
+          var option = document.createElement("option");
+          option.value = array[i];
+          option.text = array[i];
+          selectlist.appendChild(option);
+        }
+      }
+
+
+
+
+
+      let bob2 = document.getElementById("Update2")
+      bob2.addEventListener("click", ABC2)
+      function ABC2(event) {
+
+        event.preventDefault()
+        let nationselection = document.getElementById("dropp").value
+
+        console.log(optionsX2)
+        console.log(optionsy2)
+        let score2 = optionsy2[optionsX2.indexOf(nationselection)]
+        console.log(score2)
+        
+        if (nationselection.includes("Left")){
+            colors.push('green')
+            console.log(colors)
+        }
+        if (nationselection.includes("Right")){
+            colors.push('Yellow')
+            console.log(colors)
+
+        }
+
+
+        pieg.data.datasets[0].backgroundColor = colors
+        pieg.data.labels.push(nationselection)//go through this array
+        pieg.data.datasets[0].data.push(score2)
+        pieg.update()
+        modal2.style.display = "none";
+      }
+
+      let res2 = document.getElementById("Reset2")
+
+      res2.addEventListener("click", CBA2)
+
+      function CBA2(event) {
+        event.preventDefault()
+        console.log(initialgraphlabels2)
+        pieg.data.labels = initialgraphlabels2
+
+        let xtemp =  structuredClone(initialgraphlabels2)
+        let ytemp =  structuredClone(initialgraphvalues2)
+        pieg.data.datasets[0].backgroundColor = []
+        pieg.data.labels = xtemp
+        pieg.data.datasets[0].data = ytemp
+        pieg.update()
+        colors = []
+      }
+
+      // Get the modal
+      var modal2 = document.getElementById("myModal2");
+
+      // Get the button that opens the modal
+      var btn2 = document.getElementById("myBtn2");
+
+      // Get the <span> element that closes the modal
+      var span2 = document.getElementsByClassName("close2")[0];
+
+      // When the user clicks the button, open the modal 
+      btn2.onclick = function () {
+        modal2.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span2.onclick = function () {
+        modal2.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal2.style.display = "none";
+        }
+      }
+
+      //Create array of options to be added
+
+      function dropdown2(array) {
+        let selectlist = document.getElementById("dropp")
+        //Create and append the options
+        for (var i = 0; i < array.length; i++) {
+          var option = document.createElement("option");
+          option.value = array[i];
+          option.text = array[i];
+          selectlist.appendChild(option);
+        }
+      }
+
+
+
+      // Import the functions you need from the SDKs you need
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAvINtD0zhqG-xjFZ80WTrpausHjHGo1-s",
+        authDomain: "connecttojvacode.firebaseapp.com",
+        databaseURL: "https://connecttojvacode-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "connecttojvacode",
+        storageBucket: "connecttojvacode.firebasestorage.app",
+        messagingSenderId: "465132041033",
+        appId: "1:465132041033:web:2d84955182c2510ba3e098",
+        measurementId: "G-PGT8H904S8"
+
+      };
+
+      // Initialize Firebase
+
+      // import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+      const app = initializeApp(firebaseConfig);
+
+      import { getDatabase, ref, set, get, update, child } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+      const database = getDatabase(); //This creates a firebase instance
+      //let link_to_database_root = ref(database); //This creates a reference (link) to the root of your database
+      //This will create a reference to whatever address comes after the comma
+      const firebaseRef = ref(database);
+
+      function processing(snapshot) {
+        console.log('Processing function')
+        console.log('Key IS:, snapshot.key')
+      }
+
+
+      //document.getElementById("Age");
+      //console.log()
+      let Def = null
+      let optionsX = null
+      let optionsy = null
+      let initialgraphlabels = null
+      let initialgraphvalues = null
+      let AllData = null 
+    
+      get(child(firebaseRef, '/')).then((snapshot) => {
+        if (snapshot.exists()) {
+          AllData = snapshot.val();
+
+          optionsX = Object.keys(AllData["TeamsOvr"])
+          optionsy = Object.values(AllData["TeamsOvr"])
+
+          let xvals = Object.keys(AllData["TeamsOvr"]).slice(50, 54)
+          let yvals = Object.values(AllData["TeamsOvr"]).slice(50, 54)
+
+          initialgraphlabels = Object.keys(AllData["TeamsOvr"]).slice(50, 54)
+          initialgraphvalues = Object.values(AllData["TeamsOvr"]).slice(50, 54)
+
+          dropdown(optionsX, optionsy)
+
+
+          const ctx = document.getElementById('myChart');
+          Def = new Chart(ctx, {
+            type: 'bar',
+
+            data: {
+              labels: xvals,
+              datasets: [{
+                label: 'ratings',
+                data: yvals,
+                borderWidth: 1,
+                borderColor: '#FF6384',
+                backgroundColor: '#FFB1C1'
+
+              }]
+            },
+            options: {
+              title: {
+                display: true,
+                text: 'Overall Football team ratings' 
+              },
+              scales: {
+                yAxes: [{
+                  ticks:{beginAtZero:true},
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Average Overall Ratings',
+                  }
+                }],
+                  xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'FootBall Clubs'
+                  }
+                }]
+              },
+                
+
+            }
+          });
+        }
+      })
+
+      let pieg = null
+      let piex = null
+      let optionsX2 = null
+      let optionsy2 = null
+      let initialgraphlabels2 = null
+      let initialgraphvalues2 = null
+      let piey = null
+      let AllPieData = null
+      let colors = []
+
+      get(child(firebaseRef, '/')).then((snapshot) => {
+        if (snapshot.exists()) {
+          AllPieData = snapshot.val();
+
+          optionsX2 = Object.keys(AllData["FootnationCount"])
+          optionsy2 = Object.values(AllData["FootnationCount"])
+
+          let piex = Object.keys(AllPieData["FootnationCount"]).slice(0,0)
+          let piey = Object.values(AllPieData["FootnationCount"]).slice(0,0)
+
+          initialgraphlabels2 = Object.keys(AllData["FootnationCount"]).slice(0,0)
+          initialgraphvalues2 = Object.values(AllData["FootnationCount"]).slice(0,0)
+
+          dropdown2(optionsX2, optionsy2)
+
+          const ctx = document.getElementById('myChart2');
+
+          pieg = new Chart(ctx, {
+            type: 'pie',
+
+            data: {
+              labels : piex,
+              datasets: [{
+                label: 'number',
+                backgroundColor:[],
+                borderColor: 'black',
+                data: piey,
+                borderWidth: 1,
+                yAxisID: 'yAxis',
+                xAxisID: 'xAxis'
+
+            }]
+            },
+            options: {
+              legend: {
+                display: false
+              },
+              title: {
+                display: true,
+                text: 'Left footed vs rightfooted footballers. Add a nation to display'  
+              },
+
+            }
+          });
+        }
+      })
+
+
+      let key = document.getElementById("drop2")
+      console.log(key)
+      key.onchange = () => {
+        dropworkplease(key.value);
+      }
+
+      function dropworkplease(key){
+      
+      get(child(firebaseRef, '/')).then((snapshot) => {
+         if (snapshot.exists()) {
+           let AllData = snapshot.val(); 
+         let dtata11 = (AllData["AvNationPlayerRatings"])
+         let awnser2 = (dtata11[key])
+         document.getElementById("avpaleyrr").innerText = awnser2
+         }})}
+
+
+      let key2 = document.getElementById("drop3")
+      key2.onchange = () => {
+        dropworkplease2(key2.value);
+      }
+
+      function dropworkplease2(key2){
+      
+      get(child(firebaseRef, '/')).then((snapshot) => {
+         if (snapshot.exists()) {
+           let AllData = snapshot.val(); 
+         let dtata112 = (AllData["AvNationPlayerWages"])
+         let awnser3 = (dtata112[key2])
+         document.getElementById("avpaleyrw").innerText = awnser3
+         }})}
+      
+      
+
+
+
+
+
+      
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+  </body>
+
+</html>
